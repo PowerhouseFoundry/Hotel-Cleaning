@@ -1,0 +1,31 @@
+WEST SILC POWERHOUSE - HOOVER REVEAL FIX
+
+This is a PATCH ONLY. Do not replace or delete your existing project folder.
+
+1. In your existing game folder, replace these TWO files:
+   game.js
+   style.css
+
+2. Open the existing assets folder. Copy the included floor folder INTO assets.
+   If your Mac asks, choose MERGE / REPLACE only these six floor artwork files.
+
+   The resulting files should be:
+   assets/floor/carpet-dust-overlay.png
+   assets/floor/carpet-mask.png
+   assets/floor/hoover-head.png
+   assets/floor/dirt-1.png
+   assets/floor/dirt-2.png
+   assets/floor/dirt-3.png
+
+3. Keep your current assets/scenes/floor-topdown.png unchanged.
+   The improved overlay is aligned to the exact 1448 x 1086 room image
+   generated earlier, with the bed above and red carpet around it.
+
+4. Open index.html again in Chrome and refresh with Cmd + Shift + R.
+
+The fix makes the full floor scene fit the screen without cropping,
+reveals clean carpet as the hoover passes, removes dirt patches,
+updates CARPET % and finishes after 85% coverage and all 3 dirt spots.
+It works with local file:// pages and does not require a web server.
+
+All other activities, including bed-making, remain unchanged.

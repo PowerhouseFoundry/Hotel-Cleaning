@@ -1,0 +1,182 @@
+:root{--purple:#55306f;--purple2:#301b48;--lime:#a8cf3a;--ink:#17151d;--cream:#f7f4ef;--good:#49c55a;--amber:#ffc83d;--bad:#e64b42}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#15131a;font-family:Arial,Helvetica,sans-serif;color:white;touch-action:none}
+button{font:inherit}
+.app,.screen{position:fixed;inset:0;width:100%;height:100%}.screen{display:none}.screen.active{display:block}
+.hub-screen{background:#111;overflow:hidden}.room-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;user-select:none}
+.hub-screen:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.28),transparent 24%,transparent 72%,rgba(0,0,0,.18))}
+.topbar,.scene-bar{position:absolute;z-index:20;left:16px;right:16px;top:max(12px,env(safe-area-inset-top));height:76px;border-radius:22px;background:rgba(35,24,48,.91);backdrop-filter:blur(8px);display:flex;align-items:center;gap:16px;padding:10px 14px;box-shadow:0 8px 25px rgba(0,0,0,.3);border:2px solid rgba(255,255,255,.14)}
+.brand{height:55px;width:76px;object-fit:contain}.topbar-centre{flex:1;display:flex;align-items:center;gap:16px}.title{font-weight:900;font-size:clamp(20px,2.7vw,34px);letter-spacing:.5px;white-space:nowrap}.progress-wrap{height:18px;flex:1;max-width:420px;background:#1c1523;border-radius:20px;border:2px solid rgba(255,255,255,.25);overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--lime),#d5ee72);transition:width .35s}
+.icon-btn{width:54px;height:54px;min-width:54px;border:0;border-radius:16px;background:var(--purple);color:white;font-size:30px;font-weight:900;box-shadow:inset 0 0 0 2px rgba(255,255,255,.15)}
+.hotspot{position:absolute;z-index:10;min-width:126px;height:68px;padding:8px 15px;border-radius:36px;border:4px solid white;background:rgba(255,255,255,.94);color:#28183c;display:flex;align-items:center;gap:9px;box-shadow:0 0 0 5px rgba(168,207,58,.7),0 8px 22px rgba(0,0,0,.35);transform:translate(-50%,-50%);cursor:pointer;animation:pulse 2s infinite}.hotspot span{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--purple);font-size:25px}.hotspot b{font-size:18px}.hotspot i{position:absolute;right:10px;bottom:8px;width:13px;height:13px;border-radius:50%;background:#bbb}.hotspot.done{box-shadow:0 0 0 5px rgba(73,197,90,.9),0 8px 22px rgba(0,0,0,.35);animation:none}.hotspot.done i{background:var(--good)}
+.hs-bed{left:54%;top:45%}.hs-floor{left:34%;top:69%}.hs-desk{left:32%;top:88%}.hs-caddy{left:82%;top:58%}
+@keyframes pulse{0%,100%{scale:1}50%{scale:1.045}}
+.room-complete{position:absolute;z-index:30;left:50%;top:50%;transform:translate(-50%,-50%);width:min(520px,78vw);padding:32px;background:rgba(43,25,61,.96);border:5px solid var(--lime);border-radius:28px;text-align:center;font-size:38px;box-shadow:0 14px 50px rgba(0,0,0,.5)}.big-tick{font-size:78px;color:var(--lime)}
+.scene-screen{background:#19161d}.scene-bar{height:72px}.scene-title{font-weight:900;font-size:clamp(22px,3vw,36px);flex:1}.step-dots{display:flex;gap:7px}.step-dot{width:16px;height:16px;border-radius:50%;border:2px solid white;background:#32243f}.step-dot.on{background:var(--lime)}
+.scene-body{position:absolute;inset:0;padding-top:94px;background:#111;overflow:hidden}
+.scene-photo{position:absolute;inset:94px 0 0;width:100%;height:calc(100% - 94px);object-fit:cover;user-select:none}
+.task-shade{position:absolute;inset:94px 0 0;background:rgba(0,0,0,.08);pointer-events:none}
+.action-card{position:absolute;z-index:8;left:50%;bottom:20px;transform:translateX(-50%);min-width:min(640px,86vw);padding:12px 18px;border-radius:18px;background:rgba(28,21,36,.94);border:2px solid rgba(255,255,255,.18);text-align:center;font-weight:800;font-size:20px}.instruction-icon{font-size:38px;vertical-align:middle;margin-right:8px}
+.drag-item{position:absolute;z-index:12;display:grid;place-items:center;width:108px;height:82px;border-radius:20px;background:rgba(255,255,255,.96);border:4px solid var(--purple);color:#261839;font-size:38px;font-weight:900;box-shadow:0 8px 20px rgba(0,0,0,.35);touch-action:none;user-select:none}.drag-item small{display:block;font-size:12px;margin-top:-8px}.dragging{scale:1.08;filter:drop-shadow(0 10px 10px rgba(0,0,0,.4))}
+.drop-zone{position:absolute;z-index:7;border:5px dashed var(--lime);border-radius:26px;background:rgba(168,207,58,.17);box-shadow:0 0 0 4px rgba(0,0,0,.15);animation:zonePulse 1.6s infinite}.drop-zone:after{content:"";position:absolute;inset:-12px;border-radius:32px;border:4px solid rgba(168,207,58,.18)}@keyframes zonePulse{50%{background:rgba(168,207,58,.3)}}
+.gauge{position:absolute;z-index:15;left:50%;bottom:92px;transform:translateX(-50%);width:min(620px,78vw);height:28px;border:4px solid white;background:#241b2b;border-radius:20px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.35)}.gauge-fill{height:100%;width:0;background:linear-gradient(90deg,var(--bad) 0 34%,var(--amber) 34% 67%,var(--good) 67%);transition:width .08s linear}
+.spark{position:absolute;z-index:30;font-size:40px;animation:spark .8s ease-out forwards;pointer-events:none}@keyframes spark{0%{opacity:0;scale:.2}35%{opacity:1;scale:1.4}100%{opacity:0;transform:translateY(-45px) rotate(30deg);scale:.8}}
+/* Bed */
+/* The generated bed artwork is 4:3.  This stage always shows the whole image
+   rather than cropping it to the browser's much wider aspect ratio. */
+.bed-stage{position:absolute;z-index:1;inset:94px 0 0;display:grid;place-items:center;overflow:hidden;background:#111}
+.bed-canvas{position:relative;width:min(100vw,calc((100vh - 94px) * 4 / 3));aspect-ratio:4/3;max-height:calc(100vh - 94px);overflow:hidden;background:#111;box-shadow:0 0 28px rgba(0,0,0,.38)}
+.bed-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;user-select:none;pointer-events:none}
+.bed-darken{position:absolute;z-index:2;inset:0;background:rgba(0,0,0,.08);pointer-events:none}
+.bed-canvas .drop-zone{z-index:7}
+.bed-canvas .drag-item{z-index:12}
+/* Coordinates below are percentages of the artwork itself, not the browser. */
+.bed-zone{left:30.5%;top:17%;width:40%;height:54%}
+.caddy-zone{right:3.2%;top:34%;width:19%;height:42%}
+.linen-zone{left:3.5%;top:31%;width:19%;height:34%}
+.bed-item-sheet{left:39%;top:40%;width:22%;height:18%;font-size:54px}
+.bed-pillowcase{width:108px;height:82px}
+.linen-pile{left:6%;top:42%}
+.hand-tool{left:7%;top:74%;font-size:38px}
+.smoothing-overlay{position:absolute;z-index:9;left:30.5%;top:17%;width:40%;height:54%;border-radius:24px;background:repeating-linear-gradient(12deg,rgba(255,255,255,.12) 0 10px,rgba(100,100,100,.12) 11px 18px);border:4px solid rgba(255,255,255,.5);transition:filter .3s,opacity .3s}.smoothing-overlay.smooth{filter:blur(1px);opacity:.25}
+/* Floor */
+.floor-plan{position:absolute;inset:94px 0 0;overflow:hidden;background:#2a182f}.floor-bg,.floor-overlay{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;user-select:none;pointer-events:none}.floor-bg{z-index:1}.floor-overlay{z-index:2}.dirt-patch{position:absolute;z-index:4;height:auto;transform:translate(-50%,-50%);pointer-events:none;user-select:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.28));transition:opacity .28s ease,transform .28s ease}.dirt-patch.cleaned{opacity:0;transform:translate(-50%,-50%) scale(.55)}.vacuum-head{position:absolute;z-index:8;width:132px;height:auto;touch-action:none;user-select:none;filter:drop-shadow(0 10px 14px rgba(0,0,0,.36));transform-origin:50% 58%}.counter{position:absolute;z-index:15;right:22px;top:110px;padding:10px 16px;border-radius:16px;background:rgba(42,25,59,.94);font-size:20px;font-weight:900}.floor-counter{min-width:185px;line-height:1.22}
+/* Desk */
+.desk-dirt{position:absolute;z-index:7;left:43%;top:51%;width:24%;height:18%;border-radius:50%;background:radial-gradient(ellipse,#714825 0 14%,rgba(108,64,32,.72) 22%,rgba(90,50,24,.3) 55%,transparent 72%)}.cloth{position:absolute;z-index:12;left:12%;top:63%;width:105px;height:88px;border-radius:20px;background:#4eb8dc;border:4px solid white;display:grid;place-items:center;font-size:46px;box-shadow:0 8px 20px rgba(0,0,0,.35);touch-action:none}.desk-target{position:absolute;z-index:6;border:4px dashed var(--lime);border-radius:20px;background:rgba(168,207,58,.14)}.phone-target{left:58%;top:36%;width:17%;height:23%}.kettle-target{left:15%;top:28%;width:15%;height:30%}.tray-target{left:31%;top:29%;width:22%;height:22%}.desk-token{position:absolute;z-index:12;width:110px;height:80px;border-radius:20px;background:#fff;color:#28183c;border:4px solid var(--purple);display:grid;place-items:center;font-size:40px;touch-action:none;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+/* Laundry */
+.laundry-zone{right:12%;top:25%;width:38%;height:55%}.laundry-item{position:absolute;z-index:12;width:118px;height:84px;border-radius:20px;background:#fff;color:#28183c;border:4px solid var(--purple);display:grid;place-items:center;font-size:44px;touch-action:none;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.success-flash{position:absolute;z-index:40;inset:94px 0 0;display:grid;place-items:center;background:rgba(49,164,67,.18);pointer-events:none;animation:fadeSuccess 1.2s forwards}.success-flash div{font-size:min(18vw,160px);filter:drop-shadow(0 8px 12px rgba(0,0,0,.35))}@keyframes fadeSuccess{0%{opacity:0}25%{opacity:1}100%{opacity:0}}
+@media(max-width:900px){.topbar{height:62px}.brand{height:43px;width:60px}.title{font-size:20px}.progress-wrap{height:14px}.icon-btn{width:46px;height:46px;min-width:46px}.hotspot{height:58px;min-width:105px}.hotspot span{width:38px;height:38px;font-size:20px}.hotspot b{font-size:14px}.scene-body{padding-top:82px}.scene-photo,.task-shade,.floor-plan{top:82px}.bed-stage{top:82px}.bed-canvas{width:min(100vw,calc((100vh - 82px) * 4 / 3));max-height:calc(100vh - 82px)}.action-card{font-size:16px}.scene-bar{height:62px}}
+
+/* v2.2 bed sheet removal */
+.bed-sheet-layer{position:absolute;z-index:8;inset:0;width:100%;height:100%;pointer-events:none;user-select:none;transition:opacity .18s ease,filter .18s ease,transform .35s ease;transform-origin:center}.bed-sheet-layer.sheet-changing{opacity:.45;filter:blur(2px)}
+.sheet-centre-target{position:absolute;z-index:9;left:43.5%;top:39%;width:14%;height:17%;border-radius:50%;border:4px dashed rgba(168,207,58,.95);background:rgba(168,207,58,.12);box-shadow:0 0 0 6px rgba(168,207,58,.08);pointer-events:none;animation:zonePulse 1.4s infinite}
+.sheet-corner-handle{position:absolute;z-index:14;width:64px;height:64px;transform:translate(-50%,-50%);border-radius:50%;display:grid;place-items:center;background:#fff;border:5px solid var(--purple);box-shadow:0 0 0 6px rgba(168,207,58,.78),0 8px 20px rgba(0,0,0,.38);touch-action:none;user-select:none;cursor:grab;animation:cornerPulse 1.2s infinite}.sheet-corner-handle span{font-size:34px;color:var(--purple);font-weight:900}.sheet-corner-handle.dragging{cursor:grabbing;animation:none}.sheet-corner-handle.corner-bounce{animation:wrongBounce .28s ease}
+@keyframes cornerPulse{0%,100%{scale:1}50%{scale:1.12}}@keyframes wrongBounce{0%,100%{translate:0}35%{translate:-12px 0}70%{translate:12px 0}}
+.sheet-pile-hitbox{position:absolute;z-index:14;left:39.5%;top:37%;width:21%;height:20%;border-radius:32px;touch-action:none;cursor:grab;background:rgba(255,255,255,.01)}.sheet-pile-hitbox:after{content:'DRAG';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:7px 11px;border-radius:18px;background:rgba(42,25,59,.85);color:white;font-size:12px;font-weight:900;letter-spacing:.08em;box-shadow:0 4px 12px rgba(0,0,0,.25)}.sheet-pile-hitbox.dragging{cursor:grabbing}
+
+/* v2.3 realistic pillowcase pull-off interaction */
+.pillow-game{position:absolute;z-index:11;top:12.5%;width:16.8%;height:12.8%;pointer-events:none}
+.pillow-left{left:33.4%}.pillow-right{left:49.9%}
+.pillow-bare,.pillow-case-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;user-select:none;pointer-events:none;filter:drop-shadow(0 3px 3px rgba(0,0,0,.22))}
+.pillow-case-clip{position:absolute;inset:0;overflow:visible;pointer-events:none;transition:opacity .12s ease}
+.pillow-case-layer{transition:filter .08s ease;transform-origin:center}
+.pillow-pull-handle{position:absolute;z-index:15;top:50%;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:#fff;border:4px solid var(--purple);box-shadow:0 0 0 5px rgba(168,207,58,.8),0 7px 18px rgba(0,0,0,.35);font-size:31px;font-weight:900;color:var(--purple);pointer-events:auto;touch-action:none;user-select:none;animation:cornerPulse 1.2s infinite}
+.pillow-pull-handle.pull-left{left:-16px;transform:translate(0,-50%)}.pillow-pull-handle.pull-right{right:-16px;transform:translate(0,-50%)}
+.pillow-pull-handle.dragging{animation:none;cursor:grabbing}
+.pillow-game.pillow-done .pillow-bare{filter:drop-shadow(0 3px 3px rgba(0,0,0,.22)) saturate(.92)}
+.pillowcase-crumpled{position:absolute;z-index:14;width:11%;height:auto;touch-action:none;user-select:none;filter:drop-shadow(0 6px 7px rgba(0,0,0,.35));cursor:grab}
+.pillowcase-crumpled.from-left{left:29%;top:27%}.pillowcase-crumpled.from-right{left:60%;top:27%}.pillowcase-crumpled.dragging{scale:1.06;cursor:grabbing}
+
+/* v2.4 independent duvet layers */
+.duvet-system{position:absolute;z-index:10;left:28.8%;top:20.4%;width:42.2%;height:50.3%;pointer-events:auto;touch-action:none;cursor:grab;user-select:none;transition:opacity .3s ease}.duvet-insert,.duvet-cover,.duvet-cover-clip{position:absolute;inset:0;width:100%;height:100%}.duvet-insert,.duvet-cover{object-fit:fill;user-select:none;pointer-events:none}.duvet-cover-clip{overflow:hidden}.duvet-cover{transition:transform .08s linear}.duvet-remove-handle{position:absolute;right:-1%;top:46%;transform:translate(35%,-50%);display:grid;place-items:center;width:46px;height:46px;background:rgba(49,28,70,.88);color:#fff;border:2px solid rgba(255,255,255,.92);border-radius:50%;font-size:32px;line-height:1;font-weight:800;z-index:15;pointer-events:none;user-select:none;box-shadow:0 4px 14px #0007;transition:opacity .1s ease}.duvet-system.duvet-pulling{cursor:grabbing}.duvet-system:focus-visible{outline:3px solid var(--lime);outline-offset:3px}.duvet-pile{position:absolute;z-index:13;left:40%;top:43%;width:21%;height:19%;object-fit:contain;touch-action:none;cursor:grab;filter:drop-shadow(0 7px 7px #0006)}
+
+/* Sheet frame sizing fix: all five individually generated PNG frames
+   use the SAME mattress-sized viewport. The old styling enlarged frames
+   02-05 to 101% of the entire room when the first corner was pulled. */
+.bed-sheet-layer,
+.bed-sheet-layer[src$="01-sheet-full.png"],
+.bed-sheet-layer[src$="02-sheet-pull-bottom-left.png"],
+.bed-sheet-layer[src$="03-sheet-pull-bottom.png"],
+.bed-sheet-layer[src$="04-sheet-pull-three.png"],
+.bed-sheet-layer[src$="05-sheet-pile.png"] {
+  inset: auto;
+  left: 25.1%;
+  top: 9.1%;
+  width: 46.7%;
+  height: 62.5%;
+  object-fit: fill;
+  transform-origin: 50% 100%;
+}
+/* Keep the already-approved alignment of the sheet before first pull. */
+.bed-sheet-layer[src$="01-sheet-full.png"] {
+  transform: skewX(-1.35deg);
+}
+
+.pillow-game.awaiting { opacity: 1; }
+.pillow-game.awaiting .pillow-pull-handle { display: none; }
+
+/* Hoovering v2.4.3 - registered, uncropped artwork with a reveal canvas. */
+.floor-stage{position:absolute;z-index:1;inset:94px 0 0;display:grid;place-items:center;overflow:hidden;background:#121016}
+.floor-artboard{position:relative;width:min(100vw,calc((100vh - 94px) * 4 / 3));aspect-ratio:4/3;max-height:calc(100vh - 94px);flex:none;overflow:hidden;background:#4d1d25;box-shadow:0 0 28px #0008}
+.floor-artboard-image,.floor-dust-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;user-select:none}
+.floor-artboard-image{object-fit:fill;z-index:1}
+.floor-dust-canvas{z-index:2}
+.floor-dirt-image{position:absolute;z-index:3;width:10.5%;height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 3px 4px #0005);pointer-events:none;user-select:none;transition:opacity .35s,transform .35s}
+.floor-dirt-image.floor-dirt-cleaned{opacity:0;transform:translate(-50%,-50%) scale(.4)}
+.floor-hoover-head{position:absolute;z-index:6;width:13%;height:auto;touch-action:none;user-select:none;cursor:grab;filter:drop-shadow(0 6px 7px #0008)}
+.floor-hoover-head.dragging{cursor:grabbing;scale:1;filter:drop-shadow(0 8px 10px #0009)}
+.floor-stage ~ .action-card{pointer-events:none}
+.floor-counter{min-width:180px;line-height:1.3;text-align:left;top:105px;right:20px;z-index:16}
+.floor-counter span{font-weight:900}
+.floor-counter small{display:block;font-size:13px;margin-top:5px;letter-spacing:.04em}
+.floor-meter{height:12px;overflow:hidden;background:#100b18;border:1px solid #ffffff55;border-radius:20px;margin:7px 0}
+.floor-meter span{display:block;height:100%;background:linear-gradient(90deg,#98c631,#d7f088);transition:width .15s}
+@media(max-width:900px){.floor-stage{top:82px}.floor-artboard{width:min(100vw,calc((100vh - 82px) * 4 / 3));max-height:calc(100vh - 82px)}.floor-counter{font-size:13px;min-width:125px;top:82px;right:6px;padding:7px 8px}.floor-counter small{font-size:10px}}
+
+
+/* ---------------------------------------------------------------
+   v2.5 DESK TIDY - isolated from the working bed and hoover sections
+   --------------------------------------------------------------- */
+.desk-tidy-stage{position:absolute;z-index:1;inset:94px 0 0;display:grid;place-items:center;overflow:hidden;background:#101017}
+.desk-tidy-board{position:relative;width:min(100vw,calc((100vh - 94px)*4/3));aspect-ratio:4/3;max-height:calc(100vh - 94px);overflow:hidden;box-shadow:0 0 28px rgba(0,0,0,.55);touch-action:none;isolation:isolate}
+.desk-tidy-background{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none;user-select:none;z-index:0}
+.desk-items-shelf{position:absolute;z-index:1;left:1%;right:1%;bottom:1%;height:21%;border-radius:clamp(12px,2vw,25px);background:linear-gradient(180deg,rgba(37,26,54,.93),rgba(25,19,39,.96));border:2px solid rgba(206,177,255,.65);box-shadow:0 -9px 25px #0006,inset 0 2px 0 #fff2;pointer-events:none}
+.desk-move-item{position:absolute;z-index:7;display:block;object-fit:fill;user-select:none;-webkit-user-drag:none;touch-action:none;cursor:grab;filter:drop-shadow(0 3px 5px rgba(0,0,0,.54));transform-origin:50% 50%}
+.desk-move-item:focus-visible{outline:3px solid #d7ff6a;outline-offset:3px;border-radius:12px}
+.desk-move-item.desk-moving{z-index:20;cursor:grabbing;filter:drop-shadow(0 4px 16px rgba(199,255,66,.9));scale:1.05}
+.desk-move-item.desk-item-set{z-index:6;cursor:default;pointer-events:none;filter:drop-shadow(0 3px 4px #0005)}
+.desk-ghost-target{position:absolute;z-index:2;display:block;pointer-events:none;transition:opacity .28s ease,filter .2s ease}
+.desk-ghost-target img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;opacity:.77;filter:drop-shadow(0 0 8px rgba(161,112,240,.45))}
+.desk-ghost-glow{position:absolute;inset:-5%;border:2px dashed rgba(178,128,255,.7);border-radius:22%;background:rgba(157,118,244,.08);animation:desk-hint-pulse 2.7s ease-in-out infinite}
+.desk-ghost-target.desk-target-near .desk-ghost-glow{background:rgba(194,239,85,.23);border-color:#d4ff7e;box-shadow:0 0 14px rgba(199,255,100,.8)}
+.desk-ghost-target.desk-target-completed{opacity:0}
+@keyframes desk-hint-pulse{50%{opacity:.48}}
+.desk-reference-thumb{position:absolute;z-index:9;top:3%;right:3%;width:23%;aspect-ratio:4/3;padding:3px;background:#35214e;border:3px solid #d7b9ff;border-radius:13px;cursor:pointer;box-shadow:0 4px 12px #0008;overflow:visible;touch-action:manipulation}
+.desk-reference-thumb img{display:block;width:100%;height:100%;object-fit:cover;border-radius:9px}
+.desk-reference-thumb span{position:absolute;top:-11%;left:-12%;display:grid;place-items:center;width:32%;aspect-ratio:1;border-radius:50%;border:2px solid white;background:#5c3387;color:#fff;font-size:clamp(19px,2.5vw,30px);box-shadow:0 4px 10px #0009}
+.desk-reference-modal[hidden]{display:none!important}
+.desk-reference-modal{position:absolute;z-index:30;inset:0;background:rgba(13,9,22,.86);display:grid;place-items:center;padding:5%;backdrop-filter:blur(3px)}
+.desk-reference-modal img{display:block;width:100%;max-height:100%;object-fit:contain;border:4px solid #cdb5ff;border-radius:12px;box-shadow:0 8px 32px #000a}
+.desk-reference-close{position:absolute;z-index:2;top:3%;right:4%;font-size:34px;font-weight:900;color:white;background:#563081;border:2px solid white;border-radius:50%;width:50px;height:50px;cursor:pointer}
+.desk-reference-modal.desk-completed-reference .desk-reference-close{display:none}
+@media(max-width:900px){.desk-tidy-stage{top:82px}.desk-tidy-board{width:min(100vw,calc((100vh - 82px)*4/3));max-height:calc(100vh - 82px)}.desk-reference-close{width:38px;height:38px;font-size:26px}.desk-ghost-glow{border-width:1.5px}}
+
+.desk-reference-thumb span svg{width:64%;height:64%;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Laundry v3 – photo-registered single overlay and touch targets */
+.laundry-stage{position:absolute;z-index:1;inset:94px 0 0;display:grid;place-items:center;overflow:hidden;background:#111016}
+.laundry-board{position:relative;width:min(100vw,calc((100vh - 94px) * 4 / 3));aspect-ratio:4/3;max-height:calc(100vh - 94px);overflow:hidden;background:#3d1928;box-shadow:0 0 28px #0008;isolation:isolate}
+/* Background, transparent overlay and all five invisible targets scale as one. */
+.laundry-scene-layer{position:absolute;inset:0;transform:scale(1.14);transform-origin:50% 44%;pointer-events:none}
+.laundry-bg,.laundry-overlay{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;user-select:none;pointer-events:none}
+.laundry-bg{z-index:1}
+.laundry-overlay{z-index:3}
+.laundry-target{position:absolute;z-index:4;border-radius:20px;pointer-events:none}
+/* Any hover feedback is registered to the same pixel-perfect target shape. */
+.laundry-target.laundry-near{background:rgba(182,224,100,.075);box-shadow:inset 0 0 0 3px rgba(176,229,110,.6),0 0 15px rgba(176,229,110,.25)}
+.laundry-target.laundry-correct{background:rgba(65,218,112,.16);box-shadow:inset 0 0 0 4px rgba(119,245,149,.8),0 0 18px rgba(65,218,112,.4)}
+/* No purple tray, no hand prompt, just one large item on the clear carpet. */
+.laundry-current-item{position:absolute;z-index:12;object-fit:contain;user-select:none;touch-action:none;cursor:grab;filter:drop-shadow(0 8px 12px rgba(0,0,0,.5))}
+.laundry-current-item.laundry-moving{cursor:grabbing;filter:drop-shadow(0 12px 16px rgba(0,0,0,.5))}
+.laundry-feedback{position:absolute;inset:0;z-index:16;pointer-events:none}
+.laundry-feedback-icon{position:absolute;width:9%;height:auto;transform:translate(-50%,-50%);animation:laundry-feedback-pop .60s ease forwards;filter:drop-shadow(0 8px 14px #0008)}
+.laundry-feedback-icon.bad{width:8.5%}
+@keyframes laundry-feedback-pop{0%{opacity:0;scale:.45}30%{opacity:1;scale:1.04}100%{opacity:0;translate:0 -15px;scale:.86}}
+.laundry-success-badge{position:absolute;z-index:19;left:50%;top:50%;width:24%;height:auto;transform:translate(-50%,-50%);animation:laundry-done .9s ease both;pointer-events:none;filter:drop-shadow(0 14px 20px #0008)}
+@keyframes laundry-done{0%{opacity:0;scale:.55}25%{opacity:1;scale:1.05}100%{opacity:1;scale:1}}
+@media(max-width:900px){.laundry-stage{top:82px}.laundry-board{width:min(100vw,calc((100vh - 82px) * 4 / 3));max-height:calc(100vh - 82px)}}
+
+
+/* Laundry refinement: make the existing cart artwork visible, no oversized borders. */
+.laundry-overlay{opacity:.97}
+.laundry-target{border:0!important;border-radius:16px!important;box-shadow:none;background:transparent}
+.laundry-target.laundry-near{background:rgba(170,227,124,.07);box-shadow:inset 0 0 0 2px rgba(184,238,150,.48),0 0 16px rgba(112,234,151,.12)}
+.laundry-target.laundry-correct{background:rgba(74,212,106,.10);box-shadow:inset 0 0 0 2px rgba(126,229,132,.58)}
+.laundry-feedback-icon{display:grid;place-items:center;width:49px;height:49px;font:900 36px/1 Arial,sans-serif;color:white;border-radius:50%;background:#2faa58;border:3px solid rgba(255,255,255,.92);box-shadow:0 4px 12px #0005;filter:none;}
+.laundry-feedback-icon.bad{width:43px;height:43px;font-size:34px;background:#d84b49}
+/* The final laundry completion uses a single simple green tick. */
+.laundry-stage ~ .success-flash{background:rgba(25,60,35,.12)}
+.laundry-stage ~ .success-flash div{font-size:0;filter:none;display:grid;place-items:center;background:#28a957;color:white;width:105px;height:105px;border:5px solid rgba(255,255,255,.9);border-radius:50%;box-shadow:0 8px 25px #0005}
+.laundry-stage ~ .success-flash div:before{content:'✓';font-size:75px;font-weight:900;line-height:1}
+.laundry-stage ~ .spark{display:none}

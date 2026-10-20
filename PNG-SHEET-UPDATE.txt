@@ -1,0 +1,5 @@
+Sheet artwork now loads PNG files instead of SVG.
+01-sheet-full.png is the new photorealistic sheet artwork.
+02-05 are PNG conversions of the previous placeholder frames until new photorealistic stages are made.
+All sheet PNGs are 1448 x 1086.
+Replace each PNG in assets/bed/ with artwork of the same dimensions.

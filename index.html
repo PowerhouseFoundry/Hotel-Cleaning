@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Powerhouse Hotel Room Cleaning</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app" class="app" aria-live="polite">
+    <section id="hub" class="screen hub-screen active" aria-label="Hotel room">
+      <img class="room-art" src="assets/room/main-room.png" alt="Clean training hotel room" draggable="false" />
+      <header class="topbar">
+        <img src="assets/ui/powerhouse-logo.png" class="brand" alt="The Powerhouse" />
+        <div class="topbar-centre">
+          <div class="title">HOTEL ROOM</div>
+          <div class="progress-wrap" aria-label="Room progress"><div id="roomProgress" class="progress-fill"></div></div>
+        </div>
+        <button id="resetBtn" class="icon-btn" aria-label="Reset room">↻</button>
+      </header>
+
+      <button class="hotspot hs-bed" data-open="bed" aria-label="Make the bed"><span><img src="assets/ui/section-icons/bed.png" alt="" width="31" height="31" style="display:block;object-fit:contain" draggable="false" /></span><b>BED</b><i></i></button>
+      <button class="hotspot hs-floor" data-open="floor" aria-label="Hoover the floor"><span><img src="assets/ui/section-icons/floor.png" alt="" width="31" height="31" style="display:block;object-fit:contain" draggable="false" /></span><b>FLOOR</b><i></i></button>
+      <button class="hotspot hs-desk" data-open="desk" aria-label="Clean the desk"><span><img src="assets/ui/section-icons/desk.png" alt="" width="31" height="31" style="display:block;object-fit:contain" draggable="false" /></span><b>DESK</b><i></i></button>
+      <button class="hotspot hs-caddy" data-open="laundry" aria-label="Laundry caddy"><span><img src="assets/ui/section-icons/laundry.png" alt="" width="31" height="31" style="display:block;object-fit:contain" draggable="false" /></span><b>LAUNDRY</b><i></i></button>
+
+      <div id="roomComplete" class="room-complete" hidden>
+        <div class="big-tick">✓</div><strong>ROOM READY</strong>
+      </div>
+    </section>
+
+    <section id="scene" class="screen scene-screen" aria-label="Cleaning task">
+      <header class="scene-bar">
+        <button id="backBtn" class="icon-btn" aria-label="Back to room">←</button>
+        <div id="sceneTitle" class="scene-title"></div>
+        <div id="stepDots" class="step-dots"></div>
+      </header>
+      <div id="sceneBody" class="scene-body"></div>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
